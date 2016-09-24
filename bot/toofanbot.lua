@@ -237,6 +237,7 @@ function create_config( )
     "lock_emoji",
     "lock_english",
     "lock_fosh",
+    "hashtag",
     "lock_fwd",
     "lock_join",
     "lock_media",
@@ -253,7 +254,7 @@ function create_config( )
     },
     sudo_users = {111334847},--Sudo users
     moderation = {data = 'data/moderation.json'},
-    about_text = [[MeGa shield v2.9
+    about_text = [[ToOfan Bot v3.3
 An advanced administration bot based on TG-CLI written in Lua
 
 Github:
