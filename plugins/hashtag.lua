@@ -12,6 +12,9 @@ local function run(msg, matches)
             if data[tostring(msg.to.id)]['settings']['hsh'] then
                 hashtag = data[tostring(msg.to.id)]['settings']['hsh']
             end
+			if data[tostring(msg.to.id)]['settings']['pmhsh'] then
+                tgs = data[tostring(msg.to.id)]['settings']['pmhsh']
+            end
         end
     end
 
@@ -36,6 +39,13 @@ local function run(msg, matches)
 			--local is_hash_caption = msg.media.caption:match("#soal")
 			if not msg.media.caption:match("#سوال") and not msg.media.caption:match("#جواب") and not msg.media.caption:match("#پرسش") and not msg.media.caption:match("#پاسخ") then
 				delete_msg(msg.id, ok_cb, false)
+				if tgs == "yes" then
+				if msg.media.caption:lower():match("telegram.me/") or msg.media.caption:lower():match("tlgrm.me/") then
+				return 'Name: '..string.gsub(msg.from.print_name, "_", " ")..'\nID: @'..msg.from.username..'\nشما پیام حاوی لینک تبلیغ ارسال کردید و برطبق قوانین گروه پیام شما حذف کردید. تکرار مجدد این پیام موجب حذف شما از گروه میشود.'
+				else
+				return 'Name: '..string.gsub(msg.from.print_name, "_", " ")..'\nID: @'..msg.from.username..'\nشما پیام بدون هشتگ ارسال کردید و بر طبق قوانین گروه پیام شما حذف گردید.'
+				end
+				end
 				return
 			else
 				return
@@ -52,7 +62,14 @@ local function run(msg, matches)
 		if msg.fwd_from.title then -- msg.fwd checks
 			--local is_hash_fwd = msg.fwd_from.title:match("#soal")
 			if not msg.fwd_from.title:match("#سوال") and not msg.fwd_from.title:match("#جواب") and not msg.fwd_from.title:match("#پرسش") and not msg.fwd_from.title:match("#پاسخ") then
-				delete_msg(msg.id, ok_cb, false)	
+				delete_msg(msg.id, ok_cb, false)
+				if tgs == "yes" then
+				if msg.fwd_from.title:lower():match("telegram.me/") or msg.fwd_from.title:lower():match("tlgrm.me/") then
+				return 'Name: '..string.gsub(msg.from.print_name, "_", " ")..'\nID: @'..msg.from.username..'\nشما پیام حاوی لینک تبلیغ ارسال کردید و برطبق قوانین گروه پیام شما حذف کردید. تکرار مجدد این پیام موجب حذف شما از گروه میشود.'
+				else
+				return 'Name: '..string.gsub(msg.from.print_name, "_", " ")..'\nID: @'..msg.from.username..'\nشما پیام بدون هشتگ ارسال کردید و بر طبق قوانین گروه پیام شما حذف گردید.'
+				end
+				end
 			end
 		end
 		end
@@ -60,6 +77,13 @@ local function run(msg, matches)
 			--local is_hash = msg.text:match("#soal")
 			if not msg.text:match("#سوال") and not msg.text:match("#جواب") and not msg.text:match("#پرسش") and not msg.text:match("#پاسخ") then
 				delete_msg(msg.id, ok_cb, false)	
+				if tgs == "yes" then
+				if msg.text:lower():match("telegram.me/") or msg.text:lower():match("tlgrm.me/") then
+				return 'Name: '..string.gsub(msg.from.print_name, "_", " ")..'\nID: @'..msg.from.username..'\nشما پیام حاوی لینک تبلیغ ارسال کردید و برطبق قوانین گروه پیام شما حذف کردید. تکرار مجدد این پیام موجب حذف شما از گروه میشود.'
+				else
+				return 'Name: '..string.gsub(msg.from.print_name, "_", " ")..'\nID: @'..msg.from.username..'\nشما پیام بدون هشتگ ارسال کردید و بر طبق قوانین گروه پیام شما حذف گردید.'
+				end
+				end
 			end
 		end
     end

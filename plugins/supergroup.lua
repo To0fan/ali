@@ -28,7 +28,8 @@ local function check_member_super(cb_extra, success, result)
 		  lock_rtl = 'no',
 		  lock_tgservice = 'yes',
 		  lock_contacts = 'no',
-		  strict = 'no'
+		  strict = 'no',
+		  lock_member = 'no'
         }
       }
       save_data(_config.moderation.data, data)
@@ -421,6 +422,33 @@ local function unlock_group_hashtag(msg, data, target)
     data[tostring(target)]['settings']['hsh'] = 'no'
     save_data(_config.moderation.data, data)
     return 'Hash Tag has been unlocked'
+  end
+end
+
+local function lock_group_pmhs(msg, data, target)
+  if not is_momod(msg) then
+    return
+  end
+  local group_pmshl_lock = data[tostring(target)]['settings']['pmhsh']
+  if group_hshl_lock == 'yes' then
+    return 'Hash Tag is already locked'
+  else
+    data[tostring(target)]['settings']['pmhsh'] = 'yes'
+    save_data(_config.moderation.data, data)
+    return 'PM Hash Tag has been show'
+  end
+end
+local function unlock_group_pmhs(msg, data, target)
+  if not is_momod(msg) then
+    return
+  end
+  local group_pmshl_lock = data[tostring(target)]['settings']['pmhsh']
+  if group_hshl_lock == 'no' then
+    return 'Hash Tag is not locked'
+  else
+    data[tostring(target)]['settings']['pmhsh'] = 'no'
+    save_data(_config.moderation.data, data)
+    return 'PM Hash Tag has been hidden'
   end
 end
 
@@ -961,6 +989,11 @@ function show_supergroup_settingsmod(msg, target)
 			data[tostring(target)]['settings']['hsh'] = 'no'
 		end
 	end
+	if data[tostring(target)]['settings'] then
+		if not data[tostring(target)]['settings']['pmhsh'] then
+			data[tostring(target)]['settings']['pmhsh'] = 'no'
+		end
+	end
 	  if data[tostring(target)]['settings'] then
 		if not data[tostring(target)]['settings']['username'] then
 			data[tostring(target)]['settings']['username'] = 'no'
@@ -1010,7 +1043,7 @@ function show_supergroup_settingsmod(msg, target)
   	mute_fwd = 'no'
   end
   local settings = data[tostring(target)]['settings']
-  local text = "____________________\n⚙SuperGroup settings⚙:⬇️\n____________________\n>Lock links : "..settings.lock_link.."\n>Lock contacts: "..settings.lock_contacts.."\n>Lock flood: "..settings.flood.."\n>Flood sensitivity : "..NUM_MSG_MAX.."\n>Lock spam: "..settings.lock_spam.."\n>Lock Arabic: "..settings.lock_arabic.."\n>Lock Member: "..settings.lock_member.."\n>Lock RTL: "..settings.lock_rtl.."\n>Lock Tgservice: "..settings.lock_tgservice.."\n>Lock sticker: "..settings.lock_sticker.."\n>Lock tag(#): "..settings.tag.."\n>Lock HashTag: "..setting.hsh.."\n>Lock emoji: "..settings.emoji.."\n>Lock english: "..settings.english.."\n>Lock fwd(forward): "..mute_fwd.."\n>Lock reply: "..mute_reply.."\n>Lock join: "..settings.join.."\n>Lock username(@): "..settings.username.."\n>Lock media: "..settings.media.."\n>Lock fosh: "..settings.fosh.."\n>Lock leave: "..settings.leave.."\n>Lock bots: "..bots_protection.."\n>Lock operator: "..settings.operator.."\n____________________\n⚙Easy Sweet&Faster Switch⚙:⬇️\n____________________\n>Switch Model Etehad: "..settings.etehad.."\n>Lock all: "..settings.all.."\n____________________\nℹ️About Groupℹ️:⬇️\n____________________\n>group type: "..gp_type.."\n>Public: "..settings.public.."\n>Strict settings: "..settings.strict.."\n\n____________________\n\n>>@To0fan<<"
+  local text = "____________________\n⚙SuperGroup settings⚙:⬇️\n____________________\n>Lock links : "..settings.lock_link.."\n>Lock contacts: "..settings.lock_contacts.."\n>Lock flood: "..settings.flood.."\n>Flood sensitivity : "..NUM_MSG_MAX.."\n>Lock spam: "..settings.lock_spam.."\n>Lock Arabic: "..settings.lock_arabic.."\n>Lock Member: "..settings.lock_member.."\n>Lock RTL: "..settings.lock_rtl.."\n>Lock Tgservice: "..settings.lock_tgservice.."\n>Lock sticker: "..settings.lock_sticker.."\n>Lock tag(#): "..settings.tag.."\n>Lock HashTag: "..setting.hsh.."\nPM HashTag: "..setting.pmhsh.."\n>Lock emoji: "..settings.emoji.."\n>Lock english: "..settings.english.."\n>Lock fwd(forward): "..mute_fwd.."\n>Lock reply: "..mute_reply.."\n>Lock join: "..settings.join.."\n>Lock username(@): "..settings.username.."\n>Lock media: "..settings.media.."\n>Lock fosh: "..settings.fosh.."\n>Lock leave: "..settings.leave.."\n>Lock bots: "..bots_protection.."\n>Lock operator: "..settings.operator.."\n____________________\n⚙Easy Sweet&Faster Switch⚙:⬇️\n____________________\n>Switch Model Etehad: "..settings.etehad.."\n>Lock all: "..settings.all.."\n____________________\nℹ️About Groupℹ️:⬇️\n____________________\n>group type: "..gp_type.."\n>Public: "..settings.public.."\n>Strict settings: "..settings.strict.."\n\n____________________\n\n>>@To0fan<<"
   return text
 end
 
@@ -2109,6 +2142,7 @@ local function run(msg, matches)
 		lock_group_username(msg, data, target),
 		lock_group_fosh(msg, data, target),
 		lock_group_hashtag(msg, data, target),
+		lock_group_pmhs(msg, data, target),
 		lock_group_media(msg, data, target),
 		lock_group_leave(msg, data, target),
 		lock_group_bots(msg, data, target),
@@ -2134,7 +2168,7 @@ local function run(msg, matches)
 		unlock_group_username(msg, data, target),
 		lock_group_fosh(msg, data, target),
 		lock_group_hashtag(msg, data, target),
-		lock_group_hashtag(msg, data, target),
+		lock_group_pmhs(msg, data, target),
 		unlock_group_media(msg, data, target),
 		lock_group_leave(msg, data, target),
 		lock_group_bots(msg, data, target),
@@ -2206,6 +2240,10 @@ local function run(msg, matches)
 				savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked HashTag")
 				return lock_group_hashtag(msg, data, target)
 			end
+			if matches[2] == 'pmhsh' then
+				savelog(msg.to.id, name_log.." ["..msg.from.id.."] Show PM HashTag")
+				return lock_group_pmhs(msg, data, target)
+			end
 			if matches[2] == 'media' then
 				savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked media")
 				return lock_group_media(msg, data, target)
@@ -2248,6 +2286,7 @@ local function run(msg, matches)
 		unlock_group_username(msg, data, target),
 		unlock_group_fosh(msg, data, target),
 		unlock_group_hashtag(msg, data, target),
+		unlock_group_pmhs(msg, data, target),
 		unlock_group_media(msg, data, target),
 		unlock_group_leave(msg, data, target),
 		unlock_group_bots(msg, data, target),
@@ -2273,6 +2312,7 @@ local function run(msg, matches)
 		unlock_group_username(msg, data, target),
 		unlock_group_fosh(msg, data, target),
 		unlock_group_hashtag(msg, data, target),
+		unlock_group_pmhs(msg, data, target),
 		unlock_group_media(msg, data, target),
 		unlock_group_leave(msg, data, target),
 		unlock_group_bots(msg, data, target),
@@ -2343,6 +2383,10 @@ local function run(msg, matches)
 			if matches[2] == 'hsh' then
 				savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked HashTag")
 				return unlock_group_hashtag(msg, data, target)
+			end
+			if matches[2] == 'pmhsh' then
+				savelog(msg.to.id, name_log.." ["..msg.from.id.."] Hidden PM HashTag")
+				return unlock_group_pmhs(msg, data, target)
 			end
 			if matches[2] == 'media' then
 				savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked media")
