@@ -1043,7 +1043,9 @@ function show_supergroup_settingsmod(msg, target)
   	mute_fwd = 'no'
   end
   local settings = data[tostring(target)]['settings']
-  local text = "____________________\n⚙SuperGroup settings⚙:⬇️\n____________________\n>Lock links : "..settings.lock_link.."\n>Lock contacts: "..settings.lock_contacts.."\n>Lock flood: "..settings.flood.."\n>Flood sensitivity : "..NUM_MSG_MAX.."\n>Lock spam: "..settings.lock_spam.."\n>Lock Arabic: "..settings.lock_arabic.."\n>Lock Member: "..settings.lock_member.."\n>Lock RTL: "..settings.lock_rtl.."\n>Lock Tgservice: "..settings.lock_tgservice.."\n>Lock sticker: "..settings.lock_sticker.."\n>Lock tag(#): "..settings.tag.."\n>Lock HashTag: "..setting.hsh.."\nPM HashTag: "..setting.pmhsh.."\n>Lock emoji: "..settings.emoji.."\n>Lock english: "..settings.english.."\n>Lock fwd(forward): "..mute_fwd.."\n>Lock reply: "..mute_reply.."\n>Lock join: "..settings.join.."\n>Lock username(@): "..settings.username.."\n>Lock media: "..settings.media.."\n>Lock fosh: "..settings.fosh.."\n>Lock leave: "..settings.leave.."\n>Lock bots: "..bots_protection.."\n>Lock operator: "..settings.operator.."\n____________________\n⚙Easy Sweet&Faster Switch⚙:⬇️\n____________________\n>Switch Model Etehad: "..settings.etehad.."\n>Lock all: "..settings.all.."\n____________________\nℹ️About Groupℹ️:⬇️\n____________________\n>group type: "..gp_type.."\n>Public: "..settings.public.."\n>Strict settings: "..settings.strict.."\n\n____________________\n\n>>@To0fan<<"
+  local text = "➖➖➖➖➖➖➖➖➖\n📋SuperGroup Settings:\n➖➖➖➖➖➖➖➖➖\n🔹Lock Links : "..settings.lock_link.."\n🔹Lock Contacts: "..settings.lock_contacts.."\n🔹Lock Flood: "..settings.flood.."\n🔹Flood Sensitivity : "..NUM_MSG_MAX.."\n🔹Lock Spam: "..settings.lock_spam.."\n🔹Lock Arabic: "..settings.lock_arabic.."\n🔹Lock Member: "..settings.lock_member.."\n🔹Lock RTL: "..settings.lock_rtl.."\n🔹Lock TGservice: "..settings.lock_tgservice.."\n🔹Lock Sticker: "..settings.lock_sticker.."\n🔹Lock Tag(#): "..settings.tag.."\n🔹Lock HashTag: "..settings.hsh.."\n🔹PM HashTag: "..settings.pmhsh.."\n🔹Lock Emoji: "..settings.emoji.."\n🔹Lock English: "..settings.english.."\n🔹Lock FWD(Forward): "..mute_fwd.."\n🔹Lock Reply: "..mute_reply.."\n🔹Lock Join: "..settings.join.."\n🔹Lock Username(@): "..settings.username.."\n🔹Lock Media: "..settings.media.."\n🔹Lock Fosh: "..settings.fosh.."\n🔹Lock Leave: "..settings.leave.."\n🔹Lock Bots: "..bots_protection.."\n🔹Lock Operator: "..settings.operator.."\n➖➖➖➖➖➖➖➖➖\n📋Easy Sweet&Faster Switch:\n➖➖➖➖➖➖➖➖➖\n🔹Switch Model Etehad: "..settings.etehad.."\n🔹Lock All: "..settings.all.."\n➖➖➖➖➖➖➖➖➖\n📋About Group:\n➖➖➖➖➖➖➖➖➖\n🔹Group Type: "..gp_type.."\n🔹Public: "..settings.public.."\n🔹Strict Settings: "..settings.strict.."\n➖➖➖➖➖➖➖➖➖\n\n✨Sudo:@To0fan"
+  text = string.gsub(text, "yes", "✅")
+  text = string.gsub(text, "no", "⛔️")
   return text
 end
 
@@ -1746,7 +1748,7 @@ local function run(msg, matches)
 				resolve_username(username,  callbackres, cbres_extra)
 			else
 				savelog(msg.to.id, name_log.." ["..msg.from.id.."] requested SuperGroup ID")
-				return ">Your Name: " ..string.gsub(msg.from.print_name, "_", " ").. "\n>Your Username: @"..(msg.from.username or '----').."\n>Your ID: "..msg.from.id.."\n\n>SuperGroup Name: " ..string.gsub(msg.to.print_name, "_", " ").. "\n>SuperGroup ID: "..msg.to.id
+				return "✨Your Name: " ..string.gsub(msg.from.print_name, "_", " ").. "\n✨Your Username: @"..(msg.from.username or '----').."\n✨Your ID: "..msg.from.id.."\n➖➖➖➖➖➖\n✨SuperGroup Name: " ..string.gsub(msg.to.print_name, "_", " ").. "\n✨SuperGroup ID: "..msg.to.id
 			end
 		end
 
