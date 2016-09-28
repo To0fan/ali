@@ -26,7 +26,6 @@ local function warn_user(user_id, chat_id, user_print, user_user)
 	if tonumber(hashonredis) == 1 then
 		send_large_msg(channel, 'Name: '..string.gsub(user_print, "_", " ")..'\nID: @'..user_user..'\n⛔️شما پیام حاوی لینک تبلیغ ارسال کردید و برطبق قوانین گروه پیام شما حذف کردید. تکرار مجدد این پیام موجب حذف شما از گروه میشود.' ,ok_cb, false)
 	end
-
 end
 
 local function warn_hash(user_id, chat_id, user_print, user_user)
