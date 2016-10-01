@@ -1043,8 +1043,9 @@ function show_supergroup_settingsmod(msg, target)
   	mute_fwd = 'no'
   end
   local settings = data[tostring(target)]['settings']
-  local text = "➖➖➖➖➖➖➖➖➖\n📋SuperGroup Settings:\n➖➖➖➖➖➖➖➖➖\n🔹Lock Links : "..settings.lock_link.."\n🔹Lock Contacts: "..settings.lock_contacts.."\n🔹Lock Flood: "..settings.flood.."\n🔹Flood Sensitivity : "..NUM_MSG_MAX.."\n🔹Lock Spam: "..settings.lock_spam.."\n🔹Lock Arabic: "..settings.lock_arabic.."\n🔹Lock Member: "..settings.lock_member.."\n🔹Lock RTL: "..settings.lock_rtl.."\n🔹Lock TGservice: "..settings.lock_tgservice.."\n🔹Lock Sticker: "..settings.lock_sticker.."\n🔹Lock Tag(#): "..settings.tag.."\n🔹Lock HashTag: "..settings.hsh.."\n🔹PM HashTag: "..settings.pmhsh.."\n🔹Lock Emoji: "..settings.emoji.."\n🔹Lock English: "..settings.english.."\n🔹Lock FWD(Forward): "..mute_fwd.."\n🔹Lock Reply: "..mute_reply.."\n🔹Lock Join: "..settings.join.."\n🔹Lock Username(@): "..settings.username.."\n🔹Lock Media: "..settings.media.."\n🔹Lock Fosh: "..settings.fosh.."\n🔹Lock Leave: "..settings.leave.."\n🔹Lock Bots: "..bots_protection.."\n🔹Lock Operator: "..settings.operator.."\n➖➖➖➖➖➖➖➖➖\n📋Easy Sweet&Faster Switch:\n➖➖➖➖➖➖➖➖➖\n🔹Switch Model Etehad: "..settings.etehad.."\n🔹Lock All: "..settings.all.."\n➖➖➖➖➖➖➖➖➖\n📋About Group:\n➖➖➖➖➖➖➖➖➖\n🔹Group Type: "..gp_type.."\n🔹Public: "..settings.public.."\n🔹Strict Settings: "..settings.strict.."\n➖➖➖➖➖➖➖➖➖\n\n✨Sudo:@To0fan"
+  local text = "➖➖➖➖➖➖➖➖➖\n📋SuperGroup Settings:\n➖➖➖➖➖➖➖➖➖\n🔹Lock Links : "..settings.lock_link.."\n🔹Lock Contacts: "..settings.lock_contacts.."\n🔹Lock Flood: "..settings.flood.."\n🔹Flood Sensitivity : "..NUM_MSG_MAX.."\n🔹Lock Spam: "..settings.lock_spam.."\n🔹Lock Arabic: "..settings.lock_arabic.."\n🔹Lock Member: "..settings.lock_member.."\n🔹Lock RTL: "..settings.lock_rtl.."\n🔹Lock TGservice: "..settings.lock_tgservice.."\n🔹Lock Sticker: "..settings.lock_sticker.."\n🔹Lock Tag(#): "..settings.tag.."\n🔹Lock HashTag: "..settings.hsh.."\n🔹PM HashTag: "..settings.pmhsh.."\n🔹Lock Emoji: "..settings.emoji.."\n🔹Lock English: "..settings.english.."\n🔹Lock FWD(Forward): "..mute_fwd.."\n🔹Lock Reply: "..mute_reply.."\n🔹Lock Join: "..settings.join.."\n🔹Lock Username(@): "..settings.username.."\n🔹Lock Media: "..settings.media.."\n🔹Lock Fosh: "..settings.fosh.."\n🔹Lock Leave: "..settings.leave.."\n🔹Lock Bots: "..bots_protection.."\n🔹Lock Operator: "..settings.operator.."\n➖➖➖➖➖➖➖➖➖\n📋Easy Sweet&Faster Switch:\n➖➖➖➖➖➖➖➖➖\n🔹Switch Model Etehad: "..settings.etehad.."\n🔹Lock All: "..settings.all.."\n➖➖➖➖➖➖➖➖➖\n📋About Group:\n➖➖➖➖➖➖➖➖➖\n🔹Group Type: "..gp_type.."\n🔹Public: "..settings.public.."\n🔹Strict Settings: "..settings.strict.."\n➖➖➖➖➖➖➖➖➖\n\n✨Sudo: @To0fan"
   text = string.gsub(text, "yes", "✅")
+  text = string.gsub(text, "Yes", "✅")
   text = string.gsub(text, "no", "⛔️")
   return text
 end
@@ -2717,9 +2718,9 @@ return {
 	"^[#!/]([Bb]ots)$",
 	"^[#!/]([Ww]ho)$",
 	"^[#!/]([Kk]icked)$",
-        "^[#!/]([Bb]lock) (.*)",
+    "^[#!/]([Bb]lock) (.*)",
 	"^[#!/]([Bb]lock)",
-	    "^[#!/]([Kk]ick) (.*)",
+	"^[#!/]([Kk]ick) (.*)",
 	"^[#!/]([Kk]ick)",
 	"^[#!/]([Tt]osuper)$",
 	"^[#!/]([Ii][Dd])$",
