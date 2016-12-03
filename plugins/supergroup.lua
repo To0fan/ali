@@ -29,7 +29,8 @@ local function check_member_super(cb_extra, success, result)
 		  lock_tgservice = 'yes',
 		  lock_contacts = 'no',
 		  strict = 'no',
-		  lock_member = 'no'
+		  lock_member = 'no',
+		  hashtag = 'no'
         }
       }
       save_data(_config.moderation.data, data)
