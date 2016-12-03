@@ -151,6 +151,7 @@ local function reenable_plugin_on_chat(receiver, plugin)
 end
 
 local function run(msg, matches)
+    if not is_sudo(msg) then return end
   -- Show the available plugins 
   if matches[1] == '!plugins' and is_sudo(msg) then --after changed to moderator mode, set only sudo
     return list_all_plugins()
