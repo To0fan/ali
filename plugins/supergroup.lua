@@ -30,7 +30,8 @@ local function check_member_super(cb_extra, success, result)
 		  lock_contacts = 'no',
 		  strict = 'no',
 		  lock_member = 'no',
-		  hashtag = 'no'
+		  hsh = 'no',
+		  pmhsh = 'no'
         }
       }
       save_data(_config.moderation.data, data)
