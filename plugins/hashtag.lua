@@ -21,9 +21,7 @@ local function warn_user(user_id, chat_id, user_print, user_user)
     if hashonredis then
         if tonumber(warn_chat) ~= 0 then
             if tonumber(hashonredis) >= 2 then
-				--send_large_msg(channel, string.gsub('shoma baraye bar X  link ersal kardid va kick mishavid', 'X', tostring(hashonredis)) ,ok_cb, false)
-				--redis:set(hash, 0)
-				send_large_msg(channel, 'Name: '..string.gsub(user_print, "_", " ")..'\nID: @'..user_user..'\n❌شما برای بار دوم پیام حاوی لینک تبلیغ ارسال کردید و برطبق قوانین از این گروه اخراج میشوید❌' ,ok_cb, false)
+				send_large_msg(channel, '<b>Name:</b> '..string.gsub(user_print, "_", " ")..'\n<b>ID:</b> @'..user_user..'\n❌<b>شما برای بار دوم پیام حاوی لینک تبلیغ ارسال کردید و برطبق قوانین از این گروه اخراج میشوید</b>❌' ,ok_cb, false)
 				kick_user(user_id, chat_id)
                 redis:getset(hash, 0)
 
@@ -31,7 +29,7 @@ local function warn_user(user_id, chat_id, user_print, user_user)
         end
     end
 	if tonumber(hashonredis) == 1 then
-		send_large_msg(channel, 'Name: '..string.gsub(user_print, "_", " ")..'\nID: @'..user_user..'\n⛔️شما پیام حاوی لینک تبلیغ ارسال کردید و برطبق قوانین گروه پیام شما حذف کردید. تکرار مجدد این پیام موجب حذف شما از گروه میشود.' ,ok_cb, false)
+		send_large_msg(channel, '<b>Name:</b> '..string.gsub(user_print, "_", " ")..'\n<b>ID:</b> @'..user_user..'\n⛔<b>️شما پیام حاوی لینک تبلیغ ارسال کردید و برطبق قوانین گروه پیام شما حذف کردید. تکرار مجدد این پیام موجب حذف شما از گروه میشود.</b>' ,ok_cb, false)
 	end
 
 end
@@ -49,7 +47,7 @@ local function warn_hash(user_id, chat_id, user_print, user_user)
             if tonumber(hashonredis) > 1 then
 				redis:getset(hash,1)
 			else
-				send_large_msg(channel, 'Name: '..string.gsub(user_print, "_", " ")..'\nID: @'..user_user..'\n⛔️شما پیام بدون هشتگ ارسال کردید و بر طبق قوانین گروه پیام شما حذف گردید.' ,ok_cb, false)
+				send_large_msg(channel, '<b>Name:</b> '..string.gsub(user_print, "_", " ")..'\n<b>ID:</b> @'..user_user..'\n⛔<b>️شما پیام بدون هشتگ ارسال کردید و بر طبق قوانین گروه پیام شما حذف گردید.</b>' ,ok_cb, false)
             end
         end
 	
