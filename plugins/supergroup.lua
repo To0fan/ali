@@ -1720,7 +1720,7 @@ local function run(msg, matches)
 		if matches[1] == 'setlink' and is_owner(msg) then
 			data[tostring(msg.to.id)]['settings']['set_link'] = 'waiting'
 			save_data(_config.moderation.data, data)
-			return '<b><i>Please send the new group link now</b></i>'
+			return '<b>Please send the new group link now</b>'
 		end
 
 		if msg.text then
@@ -1980,7 +1980,7 @@ local function run(msg, matches)
 			end
 			if matches[2] == 'modlist' then
 				if next(data[tostring(msg.to.id)]['moderators']) == nil then
-					return '<b><i>No moderator(s) in this SuperGroup.</b></i>'
+					return '<b>No moderator(s) in this SuperGroup.</b>'
 				end
 				for k,v in pairs(data[tostring(msg.to.id)]['moderators']) do
 					data[tostring(msg.to.id)]['moderators'][tostring(k)] = nil
