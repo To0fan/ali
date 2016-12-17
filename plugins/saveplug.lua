@@ -9,7 +9,7 @@ local function saveplug(extra, success, result)
     print('File moved to:', file)
   else
     print('Error downloading: '..msg.id)
-    send_large_msg(receiver, 'Failed, please try again!', ok_cb, false)
+    send_large_msg(receiver, '<i>Failed, please try again!</i>', ok_cb, false)
   end
 end
 local function run(msg,matches)
@@ -19,10 +19,10 @@ local function run(msg,matches)
    local name = matches[2]
       if matches[1] == "+" and matches[2] and is_sudo(msg) then
 load_document(msg.reply_id, saveplug, {msg=msg,name=name})
-        return 'Plugin '..name..' has been saved.'
+        return '<b>Plugin</b> <i>'..name..'</i> <b>has been saved.</b>'
       end
         if not is_sudo(msg) then
-          return "Only for sudo!"
+          return "<b>Only for sudo!</b>"
         end
 end
 end
