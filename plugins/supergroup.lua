@@ -91,7 +91,7 @@ local function callback(cb_extra, success, result)
 local i = 1
 local chat_name = string.gsub(cb_extra.msg.to.print_name, "_", " ")
 local member_type = cb_extra.member_type
-local text = member_type.." for "..chat_name..":\n"
+local text = '<code>'..member_type.."</code> <b>for</b> <code>"..chat_name.."</code>:\n"
 for k,v in pairsByKeys(result) do
 if not v.first_name then
 	name = " "
@@ -99,7 +99,7 @@ else
 	vname = v.first_name:gsub("‮", "")
 	name = vname:gsub("_", " ")
 	end
-		text = text.."\n"..i.." - "..name.."["..v.peer_id.."]"
+		text = text.."\n<i>"..i.." - "..name.." ( "..v.peer_id.." )</i>"
 		i = i + 1
 	end
     send_large_msg(cb_extra.receiver, text)
