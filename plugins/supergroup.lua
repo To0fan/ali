@@ -1341,7 +1341,7 @@ local function callbackres(extra, success, result)
 		local user = result.peer_id
 		local name = string.gsub(result.print_name, "_", " ")
 		local channel = 'channel#id'..extra.channelid
-		send_large_msg(channel, user..'\n'..name)
+		send_large_msg(channel, 'ℹ️<i>User information:</i>\n\n✨<b>ID:</b> <code>'..user..'</code>\n✨<b>Name:</b> '..name)
 		return user
 	elseif get_cmd == "id" then
 		local user = result.peer_id
