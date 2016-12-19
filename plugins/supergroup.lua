@@ -905,7 +905,7 @@ local function set_public_membermod(msg, data, target)
     data[tostring(target)]['settings']['public'] = 'yes'
     save_data(_config.moderation.data, data)
   end
-  return '<b>SuperGroup is now: public</b>'
+  return '<b>SuperGroup is now:</b> <i>public</i>'
 end
 
 local function unset_public_membermod(msg, data, target)
@@ -924,7 +924,7 @@ local function unset_public_membermod(msg, data, target)
     data[tostring(target)]['settings']['public'] = 'no'
 	data[tostring(target)]['long_id'] = msg.to.long_id
     save_data(_config.moderation.data, data)
-    return '<b>SuperGroup is now: not public</b>'
+    return '<b>SuperGroup is now:</b> <i>not public</i>'
   end
 end
 
@@ -1044,8 +1044,36 @@ function show_supergroup_settingsmod(msg, target)
   else
   	mute_fwd = 'no'
   end
+  local mph = 'no'
+  local mau = 'no'
+  local mvid = 'no'
+  local mgif = 'no'
+  local mtxt = 'no'
+  local mdoc = 'no'
+  local mall = 'no'
+  if is_muted(msg.to.id, 'Photo: yes') then
+	mph = 'yes'
+  end
+  if is_muted(msg.to.id, 'Audio: yes') then
+	mau = 'yes'
+  end
+  if is_muted(msg.to.id, 'Video: yes') then
+	mvid = 'yes'
+  end
+  if is_muted(msg.to.id, 'Gifs: yes') then
+	mgif = 'yes'
+  end
+  if is_muted(msg.to.id, 'Documents: yes') then
+	mdoc = 'yes'
+  end
+  if is_muted(msg.to.id, 'Text: yes') then
+	mtxt = 'yes'
+  end
+  if is_muted(msg.to.id, 'All: yes') then
+	mall = 'yes'
+  end
   local settings = data[tostring(target)]['settings']
-  local text = "➖➖➖➖➖➖➖➖➖\n📋SuperGroup Settings:\n➖➖➖➖➖➖➖➖➖\n🔹Lock Links : "..settings.lock_link.."\n🔹Lock Contacts: "..settings.lock_contacts.."\n🔹Lock Flood: "..settings.flood.."\n🔹Flood Sensitivity : <code>"..NUM_MSG_MAX.."</code>\n🔹Lock Spam: "..settings.lock_spam.."\n🔹Lock Arabic: "..settings.lock_arabic.."\n🔹Lock Member: "..settings.lock_member.."\n🔹Lock RTL: "..settings.lock_rtl.."\n🔹Lock TGservice: "..settings.lock_tgservice.."\n🔹Lock Sticker: "..settings.lock_sticker.."\n🔹Lock Tag(#): "..settings.tag.."\n🔹Lock HashTag: "..settings.hsh.."\n🔹PM HashTag: "..settings.pmhsh.."\n🔹Lock Emoji: "..settings.emoji.."\n🔹Lock English: "..settings.english.."\n🔹Lock FWD(Forward): "..mute_fwd.."\n🔹Lock Reply: "..mute_reply.."\n🔹Lock Join: "..settings.join.."\n🔹Lock Username(@): "..settings.username.."\n🔹Lock Media: "..settings.media.."\n🔹Lock Fosh: "..settings.fosh.."\n🔹Lock Leave: "..settings.leave.."\n🔹Lock Bots: "..bots_protection.."\n🔹Lock Operator: "..settings.operator.."\n➖➖➖➖➖➖➖➖➖\n📋Easy Sweet&Faster Switch:\n➖➖➖➖➖➖➖➖➖\n🔹Switch Model Etehad: "..settings.etehad.."\n🔹Lock All: "..settings.all.."\n➖➖➖➖➖➖➖➖➖\n📋About Group:\n➖➖➖➖➖➖➖➖➖\n🔹Group Type: "..gp_type.."\n🔹Public: "..settings.public.."\n🔹Strict Settings: "..settings.strict.."\n➖➖➖➖➖➖➖➖➖\n\n✨Sudo: @To0fan"
+  local text = "➖➖➖➖➖➖➖➖➖\n📋SuperGroup Settings:\n➖➖➖➖➖➖➖➖➖\n🔹Lock Links : "..settings.lock_link.."\n🔹Lock Contacts: "..settings.lock_contacts.."\n🔹Lock Flood: "..settings.flood.."\n🔹Flood Sensitivity : <code>"..NUM_MSG_MAX.."</code>\n🔹Lock Spam: "..settings.lock_spam.."\n🔹Lock Arabic: "..settings.lock_arabic.."\n🔹Lock Member: "..settings.lock_member.."\n🔹Lock RTL: "..settings.lock_rtl.."\n🔹Lock TGservice: "..settings.lock_tgservice.."\n🔹Lock Sticker: "..settings.lock_sticker.."\n🔹Lock Tag(#): "..settings.tag.."\n🔹Lock HashTag: "..settings.hsh.."\n🔹PM HashTag: "..settings.pmhsh.."\n🔹Lock Emoji: "..settings.emoji.."\n🔹Lock English: "..settings.english.."\n🔹Lock FWD(Forward): "..mute_fwd.."\n🔹Lock Reply: "..mute_reply.."\n🔹Lock Join: "..settings.join.."\n🔹Lock Username(@): "..settings.username.."\n🔹Lock Media: "..settings.media.."\n🔹Lock Fosh: "..settings.fosh.."\n🔹Lock Leave: "..settings.leave.."\n🔹Lock Bots: "..bots_protection.."\n🔹Lock Operator: "..settings.operator.."\n➖➖➖➖➖➖➖➖➖\n📋Easy Sweet&Faster Switch:\n➖➖➖➖➖➖➖➖➖\n🔹Switch Model Etehad: "..settings.etehad.."\n🔹Lock All: "..settings.all.."\n➖➖➖➖➖➖➖➖➖\n📋Mute Info:\n🔹All: "..mall.."\n🔹Audio: "..mau.."\n🔹Video: "..mvid.."\n🔹Photo: "..mph.."\n🔹Gifs: "..mgif.."\n🔹Text: "..mtxt.."\n🔹Documents: "..mdoc.."\n➖➖➖➖➖➖➖➖➖\n📋About Group:\n➖➖➖➖➖➖➖➖➖\n🔹Group Type: "..gp_type.."\n🔹Public: "..settings.public.."\n🔹<b>Strict Settings:</b> "..settings.strict.."\n➖➖➖➖➖➖➖➖➖\n\n✨Sudo: @To0fan"
   text = string.gsub(text, "yes", "✅")
   text = string.gsub(text, "Yes", "✅")
   text = string.gsub(text, "no", "⛔️")
@@ -1060,7 +1088,7 @@ local function promote_admin(receiver, member_username, user_id)
     return
   end
   if data[group]['moderators'][tostring(user_id)] then
-    return send_large_msg(receiver, member_username..' is already a moderator.')
+    return send_large_msg(receiver, member_username..' <b>is already a moderator.</b>')
   end
   data[group]['moderators'][tostring(user_id)] = member_tag_username
   save_data(_config.moderation.data, data)
@@ -1073,7 +1101,7 @@ local function demote_admin(receiver, member_username, user_id)
     return
   end
   if not data[group]['moderators'][tostring(user_id)] then
-    return send_large_msg(receiver, member_tag_username..' is not a moderator.')
+    return send_large_msg(receiver, member_tag_username..' <b>is not a moderator.</b>')
   end
   data[group]['moderators'][tostring(user_id)] = nil
   save_data(_config.moderation.data, data)
@@ -1704,11 +1732,11 @@ local function run(msg, matches)
 			local function callback_link (extra , success, result)
 			local receiver = get_receiver(msg)
 				if success == 0 then
-					send_large_msg(receiver, '*Error: Failed to retrieve link* \nReason: Not creator.\n\nIf you have the link, please use /setlink to set it')
+					send_large_msg(receiver, '<i>*Error: Failed to retrieve link*</i> \n<b>Reason: Not creator.\n\nIf you have the link, please use /setlink to set it</b>')
 					data[tostring(msg.to.id)]['settings']['set_link'] = nil
 					save_data(_config.moderation.data, data)
 				else
-					send_large_msg(receiver, "Created a new link")
+					send_large_msg(receiver, "<i>Created a new link</i>")
 					data[tostring(msg.to.id)]['settings']['set_link'] = result
 					save_data(_config.moderation.data, data)
 				end
@@ -1850,13 +1878,13 @@ local function run(msg, matches)
 					msg = msg
 				}
 				promote = get_message(msg.reply_id, get_message_callback, cbreply_extra)
-			elseif matches[1] == 'promote' and string.match(matches[2], '^%d+$') then
+			elseif matches[1] == 'promote' and matches[2] and string.match(matches[2], '^%d+$') then
 				local receiver = get_receiver(msg)
 				local user_id = "user#id"..matches[2]
 				local get_cmd = 'promote'
 				savelog(msg.to.id, name_log.." ["..msg.from.id.."] promoted user#id"..matches[2])
 				user_info(user_id, cb_user_info, {receiver = receiver, get_cmd = get_cmd})
-			elseif matches[1] == 'promote' and not string.match(matches[2], '^%d+$') then
+			elseif matches[1] == 'promote' and matches[2] and not string.match(matches[2], '^%d+$') then
 				local cbres_extra = {
 					channel = get_receiver(msg),
 					get_cmd = 'promote',
@@ -1894,13 +1922,13 @@ local function run(msg, matches)
 					msg = msg
 				}
 				demote = get_message(msg.reply_id, get_message_callback, cbreply_extra)
-			elseif matches[1] == 'demote' and string.match(matches[2], '^%d+$') then
+			elseif matches[1] == 'demote' and matches[2] and string.match(matches[2], '^%d+$') then
 				local receiver = get_receiver(msg)
 				local user_id = "user#id"..matches[2]
 				local get_cmd = 'demote'
 				savelog(msg.to.id, name_log.." ["..msg.from.id.."] demoted user#id"..matches[2])
 				user_info(user_id, cb_user_info, {receiver = receiver, get_cmd = get_cmd})
-			elseif not string.match(matches[2], '^%d+$') then
+			elseif matches[1] == 'demote' and matches[2] and not string.match(matches[2], '^%d+$') then
 				local cbres_extra = {
 					channel = get_receiver(msg),
 					get_cmd = 'demote'
@@ -1968,7 +1996,7 @@ local function run(msg, matches)
 			data[tostring(msg.to.id)]['settings']['set_photo'] = 'waiting'
 			save_data(_config.moderation.data, data)
 			savelog(msg.to.id, name_log.." ["..msg.from.id.."] started setting new SuperGroup photo")
-			return 'Please send the new group photo now'
+			return '<i>Please send the new group photo now</i>'
 		end
 
 		if matches[1] == 'clean' then
@@ -2548,11 +2576,12 @@ local function run(msg, matches)
 		end
 
 		if matches[1] == 'help' and not is_owner(msg) then
-			text = "Message to @To0fan for Help you!"
+			text = "<b>Message to</b> @To0fan <b>for Help you!</b>"
 			reply_msg(msg.id, text, ok_cb, false)
-		elseif matches[1] == 'help' and is_owner(msg) then
-			local name_log = user_print_name(msg.from)
-			savelog(msg.to.id, name_log.." ["..msg.from.id.."] Used /superhelp")
+		end 
+		if matches[1] == 'help' and is_owner(msg) then
+			--local name_log = user_print_name(msg.from)
+			--savelog(msg.to.id, name_log.." ["..msg.from.id.."] Used /superhelp")
 			return super_help()
 		end
 
