@@ -1,6 +1,6 @@
 # [ToOfan Bot](https://telegram.me/To0fan)
 
-**An advanced and powerful administration bot based on [yagop/telegram-bot](https://github.com/yagop/telegram-bot) licensed under the [GNU General Public License](https://github.com/To0fan/ali/blob/v3.2/LICENSE)**.
+**An advanced and powerful administration bot based on [janlou/telegram-bot](https://github.com/yagop/telegram-bot) licensed under the [GNU General Public License](https://github.com/To0fan/ali/blob/v3.2/LICENSE)**.
 
 | Command | Description |
 |:--------|:------------|
