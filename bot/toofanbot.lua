@@ -237,7 +237,6 @@ function create_config( )
     "lock_emoji",
     "lock_english",
     "lock_fosh",
-    "hashtag",
     "lock_fwd",
     "lock_join",
     "lock_media",
